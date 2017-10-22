@@ -102,10 +102,11 @@
               </div>
             </div>
           </div>
+          <div class="col-md-4">
+            <button type="submit" @click="save" class="btn btn-primary">Save</button>
+            <router-link class="btn btn-dark" to="/">Go to Main</router-link>
+            <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link></div>
         </div>
-        <button type="submit" @click="save" class="btn btn-primary">Save</button>
-        <router-link class="btn btn-dark" to="/">Go to Main</router-link>
-        <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link>
       </form>
     </div>
   </div>
