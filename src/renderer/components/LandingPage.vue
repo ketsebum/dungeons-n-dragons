@@ -7,6 +7,7 @@
           Quick releases are the best!
         </span>
         <system-information></system-information>
+        <router-link class="btn btn-dark" style="width: 200px" to="/app">Go to App</router-link><br><br>
       </div>
 
       <div class="right-side">
@@ -31,10 +32,11 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  import Hello from './Hold/Hello'
 
   export default {
     name: 'landing-page',
-    components: { SystemInformation },
+    components: { SystemInformation, Hello },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
