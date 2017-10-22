@@ -13,6 +13,23 @@ function Character () {
         maxHitPoints : 10,
         currHitPoints: 10,
         tempHitPoints: 0,
+        otherProfs: "",
+        hitDice: "",
+        deathSaves: {
+            sucess: 0,
+            failure: 0
+        },
+        personality: {
+            traits: {val: ""},
+            ideals: {val: ""},
+            bonds: {val: ""},
+            flaws: {val: ""},
+            feats: {val: ""},
+        },
+        inventory: "",
+        equipment: "",
+        spellcasting: "",
+        spells: [],
         stats : {
             strength : {
                 val : 0,

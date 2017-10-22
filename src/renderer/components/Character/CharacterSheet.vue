@@ -103,6 +103,12 @@
             </div>
           </div>
           <div class="col-md-4">
+            <div class="form-row">
+              <div class="form-group col-md-12" v-for="(value, name) in char.info.personality" :key="name">
+                <label for="mhp">{{firstLetterCapitalized(name)}}</label>
+                <textarea type="textarea" class="form-control" id="mhp" v-model='value.val' placeholder="" />
+              </div>
+            </div>
             <button type="submit" @click="save" class="btn btn-primary">Save</button>
             <router-link class="btn btn-dark" to="/">Go to Main</router-link>
             <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link></div>
@@ -149,6 +155,16 @@ export default {
     loadCharacter: function() {
       let load = this.store.get('character');
       if(load !== undefined) this.char = load;
+      this.updateVersion();
+      this.$store.commit("loadCharacter", this.char);
+    },
+    updateVersion: function() {
+      let tChar = new Character();
+      for(let prop in tChar.info) {
+        if(this.char.info[prop] === undefined) {
+          this.char.info[prop] = tChar.info[prop];
+        }
+      }
     },
     save: function() {
       this.store.set('character', this.char);

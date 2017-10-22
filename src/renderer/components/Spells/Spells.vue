@@ -29,7 +29,12 @@
               <br>
             </div>
             <small slot="footer">
-              <span>{{ value.components }}</span>
+              <div class="row">
+                <span class="col-8">{{ value.components }}</span>
+                <div class="col-4">
+                  <button class="btn btn-primary">Add Spell</button>
+                </div>
+              </div>
             </small>
           </b-card>
         </div>
@@ -60,10 +65,8 @@ export default {
     'people'
   ]),
   created: function () {
-    console.log(this.spellsFile);
     let fileContents = fs.readFileSync(path.join(this.spellsFile), 'utf8');
     this.spells = JSON.parse(fileContents);
-    console.log(fileContents);
   },
   methods: {
     search: function (spells) {

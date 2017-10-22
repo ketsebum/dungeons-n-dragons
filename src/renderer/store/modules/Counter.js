@@ -5,6 +5,7 @@ const state = {
     msg: 'No alert',
     countdown: 0
   },
+  character: {},
   people: []
 }
 
@@ -17,6 +18,8 @@ const mutations = {
   },
   decrementAlert: state => state.alert.countdown <= 0 ? state.alert.countdown = 0 : state.alert.countdown--,
   sendAlert: (state, alert) => state.alert = alert,
+  loadCharacter: (state, character) => state.character = character,
+  saveSpell: (state, spell) => state.character.info.spells.push(spell),
   loadPeople: (state, people) => state.people = people,
   addPerson: (state, person) => state.people.push(person),
   updatePerson: (state, person) => {
