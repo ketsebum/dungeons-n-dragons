@@ -43,13 +43,13 @@
           <div class="form-group row" v-for="(value, stat) in char.info.stats" :key="stat">
             <label for="stat" class="col-sm-2 col-form-label">{{firstLetterCapitalized(stat)}}</label>
             <div class="col-sm-2">
-              <input type="Number" class="form-control" id="stat" placeholder="10" v-model.number="value.val">
+              <input type="text" class="form-control" id="stat" placeholder="10" v-model.number="value.val">
             </div>
             <div class="col-sm-2">
-              <input type="Number" class="form-control" id="" placeholder="0" v-model.number="value.bonus">
+              <input type="text" class="form-control" id="" placeholder="0" v-model.number="value.bonus">
             </div>
             <div class="col-sm-2">
-              <input type="Number" class="form-control" id="" placeholder="0" v-model.number="value.save">
+              <input type="text" class="form-control" id="" placeholder="0" v-model.number="value.save">
             </div>
             <div class="col-sm-2 text-center">
               <input class="form-check-input" type="checkbox" v-model.number="value.prof">
