@@ -16,6 +16,11 @@ export default new Router({
       component: require('@/components/Character/CharacterSheet').default
     },
     {
+      path: '/spells',
+      name: 'spells',
+      component: require('@/components/Spells/Spells').default
+    },
+    {
       path: '*',
       redirect: '/'
     }
