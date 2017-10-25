@@ -34,42 +34,11 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <div class="row">
-              <span class="col-sm-2 text-center"><strong><u>Name</u></strong></span>
-              <span class="col-sm-2 text-center"><strong><u>Value</u></strong></span>
-              <span class="col-sm-2 text-center"><strong><u>Check</u></strong></span>
-              <span class="col-sm-2 text-center"><strong><u>Save</u></strong></span>
-              <span class="col-sm-2 text-center"><strong><u>Prof</u></strong></span>
-            </div>
             <!-- Stats -->
-            <div class="form-group row" v-for="(value, stat) in char.info.stats" :key="stat">
-              <label for="stat" class="col-sm-2 col-form-label">{{firstLetterCapitalized(stat)}}</label>
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="stat" placeholder="10" v-model.number="value.val">
-              </div>
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="" v-bind:class="[value.bcolor ? good : bad]" placeholder="0" v-model.number="value.bonus">
-              </div>
-              <div class="col-sm-2">
-                <input type="text" class="form-control" id="" v-bind:class="[value.scolor ? good : bad]" placeholder="0" v-model.number="value.save">
-              </div>
-              <div class="col-sm-2 text-center">
-                <input class="form-check-input" type="checkbox" v-model.number="value.prof">
-              </div>
-            </div>
+            <stats></stats>
             <hr>
             <!-- Skills -->
-            <div class="row">
-              <div class="form-group row col-sm-6" v-for="(value, skill) in char.info.skills" :key="skill">
-                <label for="skill" class="col-sm-6 col-form-label">{{firstLetterCapitalized(skill)}}</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" v-bind:class="[value.color ? good : bad]" id="skill" placeholder="10" v-model.number="value.val">
-                </div>
-                <div class="col-sm-2 text-center">
-                  <input class="form-check-input" type="checkbox" v-model.number="value.prof">
-                </div>
-              </div>
-            </div>
+            <skills></skills>
             <!-- -->
           </div>
           <div class="col-md-4">
@@ -121,19 +90,22 @@
 <script>
   import { mapState } from 'vuex'
   import axios from 'axios'
+  import Skills from './Skills'
+  import Stats from './Stats'
   import Character from '../../models/Character'
   import Store from '../../../main/store'
 
 export default {
   name: 'hello',
   components: {
-    
+    Skills,
+    Stats
   },
   data() {
     return {
       good: "good",
       bad: "bad",
-      char: new Character(),
+      // char: new Character(),
       store: new Store({
         configName: 'characterSheet',
         defaults: {
@@ -142,10 +114,10 @@ export default {
       })
     };
   },
-  computed: mapState([
-    // map this.people to store.state.people
-    'people'
-  ]),
+  computed: mapState({
+    // map this.character to store.state.character
+    char: state => state.CharStore.character,
+  }),
   created: function () {
     //Load char with the last used character
     this.loadCharacter();
@@ -153,18 +125,7 @@ export default {
   },
   methods: {
     loadCharacter: function() {
-      let load = this.store.get('character');
-      if(load !== undefined) this.char = load;
-      this.updateVersion();
-      this.$store.commit("loadCharacter", this.char);
-    },
-    updateVersion: function() {
-      let tChar = new Character();
-      for(let prop in tChar.info) {
-        if(this.char.info[prop] === undefined) {
-          this.char.info[prop] = tChar.info[prop];
-        }
-      }
+      this.$store.commit("loadCharacter");
     },
     save: function() {
       this.store.set('character', this.char);
@@ -192,45 +153,14 @@ export default {
 </script>
 
 <style scoped>
-.loader-text {
-  color: #42b983;
-}
-.title {
-  font-weight: bold;
-  color: #42b983;
-}
-.mb2 {
-  margin-bottom: 2px;
-}
-.card-overlay {
-  top: 0;
-  left: 0;
-  position: absolute;
-  opacity: 0.35;
-  z-index: 2000;
-  display: block;
-  background-color: black;
-  height: 100%;
-  width: 100%;
-}
-.loader {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .margins {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 20px;
 }
-
 .good {
   border-color: #28a745;
 }
-
 .bad {
   border-color: #dc3545;
 }
