@@ -10,42 +10,10 @@
             <skills></skills>
           </div>
           <div class="col-md-4">
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="armor">Armor Class</label>
-                <input type="text" class="form-control" id="armor" v-model="char.info.armorClass" placeholder="10">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="init">Initiative</label>
-                <input type="text" class="form-control" id="init" v-model="char.info.initiative" placeholder="0">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="speed">Speed</label>
-                <input type="text" class="form-control" id="speed" v-model="char.info.speed" placeholder="30">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="mhp">Max Hit Points</label>
-                <input type="text" class="form-control" id="mhp" v-model="char.info.maxHitPoints" placeholder="10">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="hp">Hit Points</label>
-                <input type="text" class="form-control" id="hp" v-model="char.info.currHitPoints" placeholder="0">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="thp">Temp</label>
-                <input type="text" class="form-control" id="thp" v-model="char.info.tempHitPoints" placeholder="0">
-              </div>
-            </div>
+            <battle></battle>
           </div>
           <div class="col-md-4">
-            <div class="form-row">
-              <div class="form-group col-md-12" v-for="(value, name) in char.info.personality" :key="name">
-                <label for="mhp">{{firstLetterCapitalized(name)}}</label>
-                <textarea type="textarea" class="form-control" id="mhp" v-model='value.val' placeholder="" />
-              </div>
-            </div>
+            <personality></personality>
             <button type="submit" @click="save" class="btn btn-primary">Save</button>
             <router-link class="btn btn-dark" to="/">Go to Main</router-link>
             <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link></div>
@@ -61,6 +29,8 @@
   import Skills from './Skills'
   import Stats from './Stats'
   import General from './General'
+  import Personality from './Personality'
+  import Battle from './Battle'
   import Character from '../../models/Character'
   import Store from '../../../main/store'
 
@@ -69,7 +39,9 @@ export default {
   components: {
     Skills,
     Stats,
-    General
+    General,
+    Personality,
+    Battle
   },
   data() {
     return {
@@ -99,7 +71,7 @@ export default {
     },
     save: function() {
       // console.log(this.char.info.skills);
-      // this.store.set('character', new Character());
+      this.store.set('character', new Character());
       // this.$store.commit("calculateSkills");
     },
     firstLetterCapitalized: function(str) {

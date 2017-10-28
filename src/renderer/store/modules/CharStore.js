@@ -75,6 +75,25 @@ const mutations = {
       }
     }
   },
+  updateGeneralValue: (state, gen) => {
+    for(let i = 0; i < state.character.info.general.length; i++) {
+      if(state.character.info.general[i].name === gen.name) {
+        state.character.info.general[i].val = gen.value;
+        break;
+      }
+    }
+  },
+  updateBattleValue: (state, battle) => {
+    for(let i = 0; i < state.character.info.battles.length; i++) {
+      if(state.character.info.battles[i].name === battle.name) {
+        state.character.info.battles[i].val = battle.value;
+        break;
+      }
+    }
+  },
+  updatePersonalityValue: (state, personality) => {
+    state.character.info.personality[personality.name].val = personality.value;
+  },
   saveSkills: (state, skills) => state.character.info.skills = skills,
   saveSpell: (state, spell) => state.character.info.spells.push(spell),
 }
