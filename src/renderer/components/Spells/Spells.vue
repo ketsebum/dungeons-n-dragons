@@ -1,13 +1,23 @@
 <template>
   <div class="spells margins">
     <div class="row" style="margin-left: -1px">
-      <router-link class="btn btn-dark" style="margin-left: 5px" to="/">Go to Main</router-link>
-      <router-link class="btn btn-dark" style="margin-left: 5px" to="/app">Go to App</router-link>
-      <input type="text" v-model="searchStr" style="margin-left: 5px" />
+      <router-link class="btn btn-dark top-bar"to="/">Go to Main</router-link>
+      <router-link class="btn btn-dark top-bar"to="/app">Go to App</router-link>
+      <input type="text" class="top-bar" v-model="searchStr"/>
+      <div class="btn-group top-bar" data-toggle="buttons">
+        <label class="btn btn-success top-bar" v-bind:class="{active: mySpells}">
+          <input type="checkbox" v-model="mySpells">My Spells
+        </label>
+      </div>
+      <div class="btn-group top-bar" data-toggle="buttons">
+        <label class="btn btn-secondary" v-bind:class="{active: classd.active}" v-for="classd in filterSpells.class.options" :key="classd.name" >
+          <input type="checkbox" :value="classd.name" @click="filterClass"> {{classd.name}}
+        </label>
+      </div>
     </div>
     <div class="row">
         <div v-bind:class="displayClass"  v-for="(value, spell) in search(spells)" :key="spell">
-          <b-card class="mb2" v-bind:class="{ active: value.active }">
+          <b-card class="mb2" v-bind:class="{ myspell: value.active }">
             <div slot="header">
               <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}}</span>
             </div>
@@ -53,21 +63,73 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import axios from 'axios'
-  import fs from 'fs'
-  import path from 'path'
+import { mapState } from "vuex";
+import axios from "axios";
+import fs from "fs";
+import path from "path";
 
 export default {
-  name: 'spells',
-  components: {
-    
-  },
+  name: "spells",
+  components: {},
   data() {
-    return { 
-      spellsFile: 'static/spells.json',
-      spells : {},
-      searchStr: "",
+    return {
+      spellsFile: "static/spells.json",
+      mySpells: false,
+      checked: {},
+      filterSpells: {
+        active: false,
+        class: {
+          options: [
+            {
+              name: "Bard",
+              value: "B",
+              active: false
+            },
+            {
+              name: "Cleric",
+              value: "C",
+              active: false
+            },
+            {
+              name: "Druid",
+              value: "D",
+              active: false
+            },
+            {
+              name: "Monk",
+              value: "M",
+              active: false
+            },
+            {
+              name: "Paladin",
+              value: "P",
+              active: false
+            },
+            {
+              name: "Ranger",
+              value: "R",
+              active: false
+            },
+            {
+              name: "Sorcerer",
+              value: "S",
+              active: false
+            },
+            {
+              name: "Warlock",
+              value: "W",
+              active: false
+            },
+            {
+              name: "Wizard",
+              value: "Z",
+              active: false
+            }
+          ]
+        }
+      },
+      spells: {},
+      searchStr: ""
     };
   },
   computed: {
@@ -77,18 +139,19 @@ export default {
       }
     },
     displayClass: function() {
-      if(this.searchStr === "") {
+      if (this.searchStr === "") {
         return "col-sm-6 col-md-4 col-lg-3";
       } else {
         return "col-sm-12 col-md-12 col-lg-6";
       }
     }
   },
-  created: function () {
-    if(this.$store.state.CharStore.character.info === undefined) this.loadCharacter();
-    let fileContents = fs.readFileSync(path.join(this.spellsFile), 'utf8');
+  created: function() {
+    if (this.$store.state.CharStore.character.info === undefined)
+      this.loadCharacter();
+    let fileContents = fs.readFileSync(path.join(this.spellsFile), "utf8");
     this.spells = JSON.parse(fileContents);
-    for(let userSpell in this.userSpells) {
+    for (let userSpell in this.userSpells) {
       this.spells[userSpell].active = true;
     }
   },
@@ -96,38 +159,78 @@ export default {
     loadCharacter: function() {
       this.$store.commit("loadCharacter");
     },
-    search: function (spells) {
-      return this.filter(spells)
+    search: function(spells) {
+      return this.filter(spells);
     },
-    filter: function( spells) {
-      var result = {}, searchResult = {}, filterResult = {}, key;
-      if(this.searchStr !== "") {
-        for (key in spells) {
-            if (key.toUpperCase().includes(this.searchStr.toUpperCase())) {
-                searchResult[key] = spells[key];
-            }
-        }
+    filter: function(spells) {
+      var searchResult = {},
+        filterResult = {};
+      if (this.mySpells) {
+        searchResult = this.searchFilter(this.userSpells, this.searchStr);
       } else {
-        searchResult = spells;
+        searchResult = this.searchFilter(spells, this.searchStr);
       }
 
-      result = searchResult;
-      return result;
+      if (this.filterSpells.class.active) {
+          filterResult = this.classFilter(searchResult)
+        } else {
+          filterResult = searchResult;
+        }
+      return filterResult;
+    },
+    searchFilter: function(arr, str) {
+      let temp = {}, key;
+      if (str !== "") {
+        for (key in arr) {
+          if (key.toUpperCase().includes(str.toUpperCase())) {
+            temp[key] = arr[key];
+          }
+        }
+      } else {
+        temp = arr;
+      }
+      return temp;
+    },
+    classFilter: function(arr) {
+      let temp = {}, key;
+      this.filterSpells.class.options.forEach((v, i) => {
+        if (v.active) {
+          for (key in arr) {
+            if (arr[key].classes.toUpperCase().includes(v.value.toUpperCase())) {
+              temp[key] = arr[key];
+            }
+          }
+        }
+      });
+      return temp;
     },
     add: function(elem) {
       this.userSpells[elem.target.value] = this.spells[elem.target.value];
       this.spells[elem.target.value].active = true;
+      console.log(this.userSpells);
     },
     remove: function(elem) {
-      this.userSpells[elem.target.value] = null;
+      delete this.userSpells[elem.target.value];
       this.spells[elem.target.value].active = false;
+      console.log(this.userSpells);
+    },
+    filterClass: function(elem) {
+      let count = 0;
+      this.filterSpells.class.options.forEach((v, i) => {
+        if (v.name === elem.target.value) {
+          v.active = !v.active;
+        }
+        if (v.active) {
+          count++;
+        }
+      });
+      this.filterSpells.class.active = count > 0;
     }
   }
 };
 </script>
 
 <style scoped>
-
 .margins {
   margin-left: 10px;
   margin-right: 10px;
@@ -141,13 +244,16 @@ export default {
   margin-top: 7px;
   margin-bottom: 5px;
 }
-.active {
-  background-color:springgreen;
+.myspell {
+  background-color: springgreen;
 }
 .footer-margin {
   margin-right: 5px;
 }
 .btn {
   margin-top: 3px;
+}
+.top-bar {
+  margin-left: 5px;
 }
 </style>
