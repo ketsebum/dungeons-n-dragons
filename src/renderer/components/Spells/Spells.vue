@@ -6,10 +6,10 @@
       <input type="text" v-model="searchStr" style="margin-left: 5px" />
     </div>
     <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3" v-for="(value, spell) in search(spells)" :key="spell">
+        <div v-bind:class="classSize" v-for="(value, spell) in search(spells)" :key="spell">
           <b-card class="mb2">
             <div slot="header">
-              <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}} school</span>
+              <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}}</span>
             </div>
 
             <div class="body">
@@ -60,10 +60,20 @@ export default {
       searchStr: "",
     };
   },
-  computed: mapState([
-    // map this.people to store.state.people
-    'people'
-  ]),
+  computed: {
+    userSpells: {
+      get() {
+        return _.cloneDeep(this.$store.state.CharStore.character.info.spells);
+      }
+    },
+    classSize: function() {
+      if(this.searchStr === "") {
+        return "col-sm-6 col-md-4 col-lg-3";
+      } else {
+        return "col-sm-12 col-md-12 col-lg-6";
+      }
+    }
+  },
   created: function () {
     let fileContents = fs.readFileSync(path.join(this.spellsFile), 'utf8');
     this.spells = JSON.parse(fileContents);
