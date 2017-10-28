@@ -11,6 +11,7 @@
           </div>
           <div class="col-md-4">
             <battles></battles>
+            <spell-list></spell-list>
           </div>
           <div class="col-md-4">
             <personality></personality>
@@ -29,6 +30,7 @@
   import axios from 'axios'
   import Skills from './Skills'
   import Stats from './Stats'
+  import SpellList from './SpellList'
   import General from './General'
   import Personality from './Personality'
   import Battles from './Battles'
@@ -42,7 +44,8 @@ export default {
     Stats,
     General,
     Personality,
-    Battles
+    Battles,
+    SpellList
   },
   data() {
     return {

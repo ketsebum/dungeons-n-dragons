@@ -5,42 +5,49 @@ function Character() {
             display: "Character's Name",
             placeholder: "Character's Name",
             val: "",
+            type: "text",
             size: 2
         }, {
             name: "dclass",
             display: "Class",
             placeholder: "Class",
             val: "",
+            type: "text",
             size: 2
         }, {
             name: "level",
             display: "Level",
             placeholder: "1",
             val: 1,
+            type: "number",
             size: 1
         }, {
             name: "race",
             display: "Race",
             placeholder: "Race",
             val: "",
+            type: "text",
             size: 2
         }, {
             name: "school",
             display: "School",
             placeholder: "School",
             val: "",
+            type: "text",
             size: 2
         }, {
             name: "background",
             display: "Background",
             placeholder: "Background",
             val: "",
+            type: "text",
             size: 1
         }, {
             name: "alignment",
             display: "Alignment",
             placeholder: "Alignment",
             val: "",
+            type: "text",
             size: 2
         }],
         battles: [{
@@ -94,6 +101,9 @@ function Character() {
                 val: ""
             },
             feats: {
+                val: ""
+            },
+            proficiency: {
                 val: ""
             },
         },

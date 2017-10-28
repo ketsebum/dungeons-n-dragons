@@ -4,7 +4,7 @@
       <div class="row" style="margin-left: -1px">
         <div class="btn-group top-bar" style="display: block">
           <router-link class="btn btn-dark" to="/battle">Battle Sreen</router-link>
-          <router-link class="btn btn-dark"to="/">Character</router-link>
+          <router-link class="btn btn-dark"to="/">Character Sheet</router-link>
           <button class="btn btn-primary" @click="save">Save</button>
         </div>
         <input type="text" class="top-bar" v-model="searchStr" placeholder="Search..."/>

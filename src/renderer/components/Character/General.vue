@@ -2,7 +2,7 @@
   <div class="form-row">
     <div :class="precursor+gen.size"  v-for="gen in general" :key="gen.name">
       <label :for="gen.name">{{gen.display}}</label>
-      <input type="text" class="form-control" @keyup="update" :id="gen.name" v-model="gen.val" :placeholder="gen.placeholder">
+      <input v-bind:type="gen.type" class="form-control" @keyup="update" :id="gen.name" :value="gen.val" :placeholder="gen.placeholder">
     </div>
   </div>
 </template>
