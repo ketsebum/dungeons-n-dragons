@@ -121,29 +121,16 @@ export default {
   created: function () {
     //Load char with the last used character
     this.loadCharacter();
-    this.calculateStats();
+    // this.calculateStats();
   },
   methods: {
     loadCharacter: function() {
       this.$store.commit("loadCharacter");
     },
     save: function() {
-      this.store.set('character', this.char);
-    },
-    calculateStats: function() {
-      for(let stat in this.char.info.stats) {
-        let modifier = this.char.info.stats[stat].val;
-        this.char.info.stats[stat].bonus = (modifier / 2) - 5;
-        this.char.info.stats[stat].save = this.char.info.stats[stat].prof ? (modifier / 2) - 3 : (modifier / 2) - 5;
-        this.char.info.stats[stat].bcolor = this.char.info.stats[stat].bonus >= 0;
-        this.char.info.stats[stat].scolor = this.char.info.stats[stat].save >= 0;
-      }
-      for(let skill in this.char.info.skills) {
-        let lStat = this.char.info.skills[skill].stat;
-        let modifier = this.char.info.stats[lStat].val;
-        this.char.info.skills[skill].val = this.char.info.skills[skill].prof ? (modifier / 2) - 3 : (modifier / 2) - 5;
-        this.char.info.skills[skill].color = this.char.info.skills[skill].val >= 0;
-      }
+      // console.log(this.char.info.skills);
+      // this.store.set('character', new Character());
+      this.$store.commit("calculateSkills");
     },
     firstLetterCapitalized: function(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);

@@ -30,124 +30,131 @@ function Character () {
         equipment: "",
         spellcasting: "",
         spells: [],
-        stats : {
-            strength : {
+        stats : [
+            { 
+                name: "strength",
                 val : 0,
                 prof : false
             },
-            dexterity : {
+            { 
+                name: "dexterity",
                 val : 0,
                 prof : false
             },
-            constitution : {
+            { 
+                name: "constitution",
                 val : 0,
                 prof : false
             },
-            intelligence : {
+            { 
+                name: "intelligence",
                 val : 0,
                 prof : false
             },
-            wisdom : {
+            { 
+                name: "wisdom",
                 val : 0,
                 prof : false
             },
-            charisma : {
+            { 
+                name: "charisma",
                 val : 0,
                 prof : false
             }
-        },
-        skills : {
-            acrobatics : {
+        ],
+        skills : [
+            {
+                name: "acrobatics",
                 val : 0,
                 prof : false,
                 stat : "dexterity"
-            },
-            animalHandling : {
+            }, {
+                name: "Animal Handling",
                 val : 0,
                 prof : false,
                 stat : "wisdom"
-            },
-            arcana : {
+            }, {
+                name: "arcana",
                 val : 0,
                 prof : false,
                 stat : "intelligence"
-            },
-            athletics : {
+            }, {
+                name: "athletics",
                 val : 0,
                 prof : false,
                 stat : "strength"
-            },
-            deception : {
+            }, {
+                name: "deception",
                 val : 0,
                 prof : false,
                 stat : "charisma"
-            },
-            history : {
+            }, {
+                name: "acrobatics",
                 val : 0,
                 prof : false,
                 stat : "intelligence"
-            },
-            insight : {
+            }, {
+                name: "history",
                 val : 0,
                 prof : false,
                 stat : "wisdom"
-            },
-            intimidation : {
+            }, {
+                name: "intimidation",
                 val : 0,
                 prof : false,
                 stat : "charisma"
-            },
-            investigation : {
+            }, {
+                name: "investigation",
                 val : 0,
                 prof : false,
                 stat : "intelligence"
-            },
-            medicine : {
+            }, {
+                name: "medicine",
                 val : 0,
                 prof : false,
                 stat : "wisdom"
-            },
-            nature : {
+            }, {
+                name: "nature",
                 val : 0,
                 prof : false,
                 stat : "intelligence"
-            },
-            perception : {
+            }, {
+                name: "perception",
                 val : 0,
                 prof : false,
                 stat : "wisdom"
-            },
-            performance : {
+            }, {
+                name: "performance",
                 val : 0,
                 prof : false,
                 stat : "charisma"
-            },
-            persuasion : {
+            }, {
+                name: "persuasion",
                 val : 0,
                 prof : false,
                 stat : "charisma"
-            },
-            religion : {
+            }, {
+                name: "religion",
                 val : 0,
                 prof : false,
                 stat : "intelligence"
-            },
-            sleightOfHand : {
+            }, {
+                name: "sleight of hand",
                 val : 0,
                 prof : false,
                 stat : "dexterity"
-            },
-            stealth : {
+            },{
+                name: "stealth",
                 val : 0,
                 prof : false,
                 stat : "dexterity"
-            },
-            survival : {
+            },{
+                name: "survival",
                 val : 0,
                 prof : false,
                 stat : "wisdom"
             }
-        }
+        ]
     };
 }
 

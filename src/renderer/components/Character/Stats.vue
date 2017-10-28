@@ -7,19 +7,19 @@
     <span class="col-sm-2 text-center"><strong><u>Save</u></strong></span>
     <span class="col-sm-2 text-center"><strong><u>Prof</u></strong></span>
   </div>
-  <div class="form-group row" v-for="(value, stat) in char.info.stats" :key="stat">
-    <label for="stat" class="col-sm-2 col-form-label">{{firstLetterCapitalized(stat)}}</label>
+  <div class="form-group row" v-for="stat in char.info.stats" :key="stat.name">
+    <label for="stat" class="col-sm-2 col-form-label">{{firstLetterCapitalized(stat.name)}}</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="stat" placeholder="10" v-model.number="value.val">
+      <input type="text" class="form-control" id="stat" placeholder="10" v-model.number="stat.val">
     </div>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="" v-bind:class="[value.bcolor ? good : bad]" placeholder="0" v-model.number="value.bonus">
+      <input type="text" class="form-control" id="" v-bind:class="[stat.bcolor ? good : bad]" placeholder="0" v-model.number="stat.bonus">
     </div>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="" v-bind:class="[value.scolor ? good : bad]" placeholder="0" v-model.number="value.save">
+      <input type="text" class="form-control" id="" v-bind:class="[stat.scolor ? good : bad]" placeholder="0" v-model.number="stat.save">
     </div>
     <div class="col-sm-2 text-center">
-      <input class="form-check-input" type="checkbox" v-model.number="value.prof">
+      <input class="form-check-input" type="checkbox" v-model.number="stat.prof">
     </div>
   </div>
 </div>
