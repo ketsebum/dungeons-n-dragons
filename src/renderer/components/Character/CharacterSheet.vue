@@ -10,7 +10,7 @@
             <skills></skills>
           </div>
           <div class="col-md-4">
-            <battle></battle>
+            <battles></battles>
           </div>
           <div class="col-md-4">
             <personality></personality>
@@ -30,7 +30,7 @@
   import Stats from './Stats'
   import General from './General'
   import Personality from './Personality'
-  import Battle from './Battle'
+  import Battles from './Battles'
   import Character from '../../models/Character'
   import Store from '../../../main/store'
 
@@ -41,7 +41,7 @@ export default {
     Stats,
     General,
     Personality,
-    Battle
+    Battles
   },
   data() {
     return {
