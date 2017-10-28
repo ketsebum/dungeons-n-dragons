@@ -3,7 +3,7 @@
     <div class="form-group row col-sm-6" v-for="skill in skills" :key="skill.name">
       <label for="skill" class="col-sm-7 col-form-label">{{firstLetterCapitalized(skill.name)}}</label>
       <div class="col-sm-3">
-        <span type="text" class="form-control" v-bind:class="[skill.color ? good : bad]" :value="skill.val">{{skill.val}}</span>
+        <span type="text" class="form-control" v-bind:class="[skill.color ? good : bad]">{{skill.val}}</span>
       </div>
       <div class="col-sm-2 text-center">
         <input class="form-check-input" :value="skill.name" @click="update" type="checkbox" v-model="skill.prof">
@@ -27,8 +27,7 @@ export default {
   computed:{
     skills: {
       get() {
-        let newVar = _.cloneDeep(this.$store.state.CharStore.character.info.skills);
-        return newVar;
+        return _.cloneDeep(this.$store.state.CharStore.character.info.skills);
       },
       set(value) {
         // NEVER INVOKED
