@@ -1,6 +1,6 @@
 <template>
-  <div class="margins">
-    <div class="row">
+  <div class="bg">
+    <div class="row margins">
       <form class="col">
         <general></general>
         <div class="row">
@@ -46,8 +46,6 @@ export default {
   },
   data() {
     return {
-      good: "good",
-      bad: "bad",
       // char: new Character(),
       store: new Store({
         configName: 'characterSheet',
@@ -62,9 +60,7 @@ export default {
     char: state => state.CharStore.character,
   }),
   created: function () {
-    //Load char with the last used character
-    this.loadCharacter();
-    // this.calculateStats();
+    if (this.$store.state.CharStore.character.info === undefined) this.loadCharacter();
   },
   methods: {
     loadCharacter: function() {
@@ -83,16 +79,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .margins {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 20px;
 }
-.good {
-  border-color: #28a745;
-}
-.bad {
-  border-color: #dc3545;
+</style>
+<style scoped>
+.bg {
+  background: url("~@/assets/dragon-bg.jpg") no-repeat center center fixed;
+  color: white;
+  height: 100vh;
 }
 </style>

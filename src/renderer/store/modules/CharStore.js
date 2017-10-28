@@ -95,7 +95,7 @@ const mutations = {
     state.character.info.personality[personality.name].val = personality.value;
   },
   saveSkills: (state, skills) => state.character.info.skills = skills,
-  saveSpell: (state, spell) => state.character.info.spells.push(spell),
+  saveSpells: (state, spells) => state.character.info.spells = spells,
 }
 
 const actions = {

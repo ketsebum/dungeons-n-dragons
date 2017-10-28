@@ -1,63 +1,68 @@
 <template>
-  <div class="spells margins">
-    <div class="row" style="margin-left: -1px">
-      <router-link class="btn btn-dark top-bar"to="/">Go to Main</router-link>
-      <router-link class="btn btn-dark top-bar"to="/app">Go to App</router-link>
-      <input type="text" class="top-bar" v-model="searchStr"/>
-      <div class="btn-group top-bar" data-toggle="buttons">
-        <label class="btn btn-success top-bar" v-bind:class="{active: mySpells}">
-          <input type="checkbox" v-model="mySpells">My Spells
-        </label>
-      </div>
-      <div class="btn-group top-bar" data-toggle="buttons">
-        <label class="btn btn-secondary" v-bind:class="{active: classd.active}" v-for="classd in filterSpells.class.options" :key="classd.name" >
-          <input type="checkbox" :value="classd.name" @click="filterClass"> {{classd.name}}
-        </label>
-      </div>
-    </div>
-    <div class="row">
-        <div v-bind:class="displayClass"  v-for="(value, spell) in search(spells)" :key="spell">
-          <b-card class="mb2" v-bind:class="{ myspell: value.active }">
-            <div slot="header">
-              <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}}</span>
-            </div>
-
-            <div class="body">
-              <span class="title"><strong>Casting Time:</strong> </span>
-              <span>{{ value.casting_time }}</span>
-              <br>
-
-              <span class="title"><strong>Duration:</strong> </span>
-              <span>{{ value.duration }}</span>
-              <br>
-
-              <span class="title"><strong>Range:</strong> </span>
-              <span>{{ value.range }}</span>
-              <br>
-
-              <span class="title"><strong>Save:</strong> </span>
-              <span>{{ value.save }}</span>
-              <br>
-              <br>
-
-              <span class="title"><strong>Description:</strong> </span>
-              <span>{{ value.description }}</span>
-              <br>
-              <br>
-            </div>
-            <small slot="footer">
-              <div class="row">
-                <span class="mx-auto">{{ value.components }} - Book: {{value.book}} pg. {{value.page}} - Classes: {{ value.classes }}</span>
-              </div>
-              <div class="row">
-              <div class="mx-auto">
-                <button class="btn btn-primary" v-if="!value.active" @click="add" :value="spell">Add Spell</button>
-                <button class="btn btn-danger" v-else @click="remove" :value="spell">Remove Spell</button>
-              </div>
-              </div>
-            </small>
-          </b-card>
+  <div class="bg">
+    <div class="spells margins">
+      <div class="row" style="margin-left: -1px">
+        <div class="btn-group top-bar" style="display: block">
+          <router-link class="btn btn-dark"to="/">Go to Main</router-link>
+          <router-link class="btn btn-dark"to="/app">Go to App</router-link>
+          <button class="btn btn-primary" @click="save">Save</button>
         </div>
+        <input type="text" class="top-bar" v-model="searchStr" placeholder="Search..."/>
+        <div class="btn-group top-bar" data-toggle="buttons">
+          <label class="btn btn-success top-bar" v-bind:class="{active: mySpells}">
+            <input type="checkbox" v-model="mySpells">My Spells
+          </label>
+        </div>
+        <div class="btn-group top-bar" data-toggle="buttons">
+          <label class="btn btn-secondary" v-bind:class="{active: classd.active}" v-for="classd in filterSpells.class.options" :key="classd.name" >
+            <input type="checkbox" :value="classd.name" @click="filterClass"> {{classd.name}}
+          </label>
+        </div>
+      </div>
+      <div class="row">
+          <div v-bind:class="displayClass"  v-for="(value, spell) in search(spells)" :key="spell">
+            <b-card class="mb2" v-bind:class="{ myspell: value.active }">
+              <div slot="header">
+                <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}}</span>
+              </div>
+
+              <div class="body">
+                <span class="title"><strong>Casting Time:</strong> </span>
+                <span>{{ value.casting_time }}</span>
+                <br>
+
+                <span class="title"><strong>Duration:</strong> </span>
+                <span>{{ value.duration }}</span>
+                <br>
+
+                <span class="title"><strong>Range:</strong> </span>
+                <span>{{ value.range }}</span>
+                <br>
+
+                <span class="title"><strong>Save:</strong> </span>
+                <span>{{ value.save }}</span>
+                <br>
+                <br>
+
+                <span class="title"><strong>Description:</strong> </span>
+                <span>{{ value.description }}</span>
+                <br>
+                <br>
+              </div>
+              <small slot="footer">
+                <div class="row">
+                  <span class="mx-auto">{{ value.components }} - Book: {{value.book}} pg. {{value.page}} - Classes: {{ value.classes }}</span>
+                </div>
+                <div class="row">
+                <div class="mx-auto">
+                  <button class="btn btn-primary" v-if="!value.active" @click="add" :value="spell">Add Spell</button>
+                  <button class="btn btn-danger" v-else @click="remove" :value="spell">Remove Spell</button>
+                </div>
+                </div>
+              </small>
+            </b-card>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -139,8 +144,7 @@ export default {
     }
   },
   created: function() {
-    if (this.$store.state.CharStore.character.info === undefined)
-      this.loadCharacter();
+    if (this.$store.state.CharStore.character.info === undefined) this.loadCharacter();
     let fileContents = fs.readFileSync(path.join(this.spellsFile), "utf8");
     this.spells = JSON.parse(fileContents);
     for (let userSpell in this.userSpells) {
@@ -199,12 +203,15 @@ export default {
     add: function(elem) {
       this.userSpells[elem.target.value] = this.spells[elem.target.value];
       this.spells[elem.target.value].active = true;
-      console.log(this.userSpells);
+      this.$store.commit("saveSpells", this.userSpells);
     },
     remove: function(elem) {
       delete this.userSpells[elem.target.value];
       this.spells[elem.target.value].active = false;
-      console.log(this.userSpells);
+      this.$store.commit("saveSpells", this.userSpells);
+    },
+    save: function() {
+      this.$store.dispatch("saveToDisk");
     },
     filterClass: function(elem) {
       let count = 0;
@@ -223,11 +230,6 @@ export default {
 </script>
 
 <style scoped>
-.margins {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-}
 .body {
   height: 300px;
   overflow-y: auto;
@@ -235,6 +237,7 @@ export default {
 .mb2 {
   margin-top: 7px;
   margin-bottom: 5px;
+  color: black;
 }
 .myspell {
   background-color: springgreen;
@@ -247,5 +250,10 @@ export default {
 }
 .top-bar {
   margin-left: 5px;
+}
+.bg {
+  background: url("~@/assets/wizard-bg.jpg") no-repeat center center fixed;
+  color: white;
+  height: 100vh;
 }
 </style>
