@@ -3,8 +3,8 @@
     <div class="spells margins">
       <div class="row" style="margin-left: -1px">
         <div class="btn-group top-bar" style="display: block">
-          <router-link class="btn btn-dark"to="/">Go to Main</router-link>
-          <router-link class="btn btn-dark"to="/app">Go to App</router-link>
+          <router-link class="btn btn-dark" to="/battle">Battle Sreen</router-link>
+          <router-link class="btn btn-dark"to="/">Character</router-link>
           <button class="btn btn-primary" @click="save">Save</button>
         </div>
         <input type="text" class="top-bar" v-model="searchStr" placeholder="Search..."/>
@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       spellsFile: "static/spells.json",
-      mySpells: false,
+      mySpells: true,
       checked: {},
       filterSpells: {
         active: false,

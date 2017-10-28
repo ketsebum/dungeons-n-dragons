@@ -11,5 +11,9 @@
 </script>
 
 <style>
-  /* CSS */
+.margins {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 20px;
+}
 </style>

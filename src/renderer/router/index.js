@@ -7,20 +7,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'landing-page',
-      component: require('@/components/LandingPage').default
-    },
-    {
-      path: '/app',
       name: 'app',
       component: require('@/components/Character/CharacterSheet').default
-    },
-    {
+    }, {
       path: '/spells',
       name: 'spells',
       component: require('@/components/Spells/Spells').default
-    },
-    {
+    }, {
+      path: '/battle',
+      name: 'battle',
+      component: require('@/components/Battle/BattleInfo').default
+    }, {
       path: '*',
       redirect: '/'
     }

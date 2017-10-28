@@ -16,8 +16,8 @@
             <personality></personality>
             <button type="submit" @click="save" class="btn btn-primary">Save</button>
             <button type="submit" @click="reset" class="btn btn-danger">Reset</button>
-            <router-link class="btn btn-dark" to="/">Go to Main</router-link>
-            <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link></div>
+            <router-link class="btn btn-dark" to="/battle">Battle Sreen</router-link>
+            <router-link class="btn btn-dark" to="/spells">Spell Book</router-link></div>
         </div>
       </form>
     </div>
@@ -78,14 +78,6 @@ export default {
   }
 };
 </script>
-
-<style>
-.margins {
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-top: 20px;
-}
-</style>
 <style scoped>
 .bg {
   background: url("~@/assets/dragon-bg.jpg") no-repeat center center fixed;
