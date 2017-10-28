@@ -1,12 +1,49 @@
 function Character () {
     this.info = {
-        name : "",
-        dclass : "",
-        level : 1,
-        race : "",
-        school : "",
-        background : "",
-        alignment : "",
+        general: [ {
+                name: "name",
+                display: "Character's Name",
+                placeholder: "Character's Name",
+                val: "",
+                size: 2
+            }, {
+                name: "dclass",
+                display: "Class",
+                placeholder: "Class",
+                val: "",
+                size: 2
+            }, {
+                name: "level",
+                display: "Level",
+                placeholder: "1",
+                val: 1,
+                size: 1
+            }, {
+                name: "race",
+                display: "Race",
+                placeholder: "Race",
+                val: "",
+                size: 2
+            }, {
+                name: "school",
+                display: "School",
+                placeholder: "School",
+                val: "",
+                size: 2
+            }, {
+                name: "background",
+                display: "Background",
+                placeholder: "Background",
+                val: "",
+                size: 1
+            }, {
+                name: "alignment",
+                display: "Alignment",
+                placeholder: "Alignment",
+                val: "",
+                size: 2
+            },
+        ],
         armorClass : 10,
         initiative : 0,
         speed : 30,

@@ -2,44 +2,12 @@
   <div class="hello margins">
     <div class="row">
       <form class="col">
-        <div class="form-row">
-          <div class="form-group col-md-2">
-            <label for="character-name">Character Name</label>
-            <input type="text" class="form-control" id="character-name" v-model="char.info.name" placeholder="Character's Name">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="class">Class</label>
-            <input type="text" class="form-control" id="class" v-model="char.info.dclass" placeholder="Class">
-          </div>
-          <div class="form-group col-md-1">
-            <label for="level">Level</label>
-            <input type="number" class="form-control" id="level" v-model="char.info.level" placeholder="1">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="race">Race</label>
-            <input type="text" class="form-control" id="race" v-model="char.info.race" placeholder="Race">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="school">School</label>
-            <input type="text" class="form-control" id="school" v-model="char.info.school" placeholder="School">
-          </div>
-          <div class="form-group col-md-1">
-            <label for="background">Background</label>
-            <input type="text" class="form-control" id="background" v-model="char.info.background" placeholder="Background">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="alignment">Alignment</label>
-            <input type="text" class="form-control" id="alignment" v-model="char.info.alignment" placeholder="Alignment">
-          </div>
-        </div>
+        <general></general>
         <div class="row">
           <div class="col-md-4">
-            <!-- Stats -->
             <stats></stats>
             <hr>
-            <!-- Skills -->
             <skills></skills>
-            <!-- -->
           </div>
           <div class="col-md-4">
             <div class="form-row">
@@ -92,6 +60,7 @@
   import axios from 'axios'
   import Skills from './Skills'
   import Stats from './Stats'
+  import General from './General'
   import Character from '../../models/Character'
   import Store from '../../../main/store'
 
@@ -99,7 +68,8 @@ export default {
   name: 'hello',
   components: {
     Skills,
-    Stats
+    Stats,
+    General
   },
   data() {
     return {
@@ -130,7 +100,7 @@ export default {
     save: function() {
       // console.log(this.char.info.skills);
       // this.store.set('character', new Character());
-      this.$store.commit("calculateSkills");
+      // this.$store.commit("calculateSkills");
     },
     firstLetterCapitalized: function(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
