@@ -100,7 +100,7 @@ function Character() {
         inventory: "",
         equipment: "",
         spellcasting: "",
-        spells: [],
+        spells: {},
         stats: [{
             name: "strength",
             val: 0,
