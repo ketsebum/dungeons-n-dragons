@@ -84,43 +84,35 @@ export default {
               name: "Bard",
               value: "B",
               active: false
-            },
-            {
+            }, {
               name: "Cleric",
               value: "C",
               active: false
-            },
-            {
+            }, {
               name: "Druid",
               value: "D",
               active: false
-            },
-            {
+            }, {
               name: "Monk",
               value: "M",
               active: false
-            },
-            {
+            }, {
               name: "Paladin",
               value: "P",
               active: false
-            },
-            {
+            }, {
               name: "Ranger",
               value: "R",
               active: false
-            },
-            {
+            }, {
               name: "Sorcerer",
               value: "S",
               active: false
-            },
-            {
+            }, {
               name: "Warlock",
               value: "W",
               active: false
-            },
-            {
+            }, {
               name: "Wizard",
               value: "Z",
               active: false
