@@ -10,16 +10,16 @@
   <div class="form-group row" v-for="stat in stats" :key="stat.name">
     <label for="stat" class="col-sm-2 col-form-label">{{firstLetterCapitalized(stat.name)}}</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" :id="stat.name" placeholder="10" v-model.number="stat.val">
+      <input type="text" class="form-control" @keyup="updateValue" :id="stat.name" placeholder="10" v-model.number="stat.val">
     </div>
     <div class="col-sm-2">
-      <input type="text" class="form-control" :id="stat.name" v-bind:class="[stat.bcolor ? good : bad]" placeholder="0" v-model.number="stat.bonus">
+      <span type="text" class="form-control" :id="stat.name" v-bind:class="[stat.bcolor ? good : bad]">{{stat.bonus}}</span>
     </div>
     <div class="col-sm-2">
-      <input type="text" class="form-control" :id="stat.name" v-bind:class="[stat.scolor ? good : bad]" placeholder="0" v-model.number="stat.save">
+      <span type="text" class="form-control" :id="stat.name" v-bind:class="[stat.scolor ? good : bad]">{{stat.save}}</span>
     </div>
     <div class="col-sm-2 text-center">
-      <input class="form-check-input" type="checkbox" v-model.number="stat.prof">
+      <input class="form-check-input" type="checkbox" @click="updateProf" :value="stat.name" v-model.number="stat.prof">
     </div>
   </div>
 </div>
@@ -52,6 +52,16 @@ export default {
   methods: {
     firstLetterCapitalized: function(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
+    },
+    updateValue: function(answer) {
+      let send = {
+        name: answer.target.id,
+        value: answer.target.value
+      }
+      this.$store.dispatch("updateStatValue", send);
+    },
+    updateProf: function(answer) {
+      this.$store.dispatch("toggleStatProf", answer.target.value);
     }
   }
 };
