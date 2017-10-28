@@ -1,5 +1,5 @@
 <template>
-  <div class="hello margins">
+  <div class="margins">
     <div class="row">
       <form class="col">
         <general></general>
@@ -15,6 +15,7 @@
           <div class="col-md-4">
             <personality></personality>
             <button type="submit" @click="save" class="btn btn-primary">Save</button>
+            <button type="submit" @click="reset" class="btn btn-danger">Reset</button>
             <router-link class="btn btn-dark" to="/">Go to Main</router-link>
             <router-link class="btn btn-dark" to="/spells">Go to Spell Page</router-link></div>
         </div>
@@ -70,9 +71,10 @@ export default {
       this.$store.commit("loadCharacter");
     },
     save: function() {
-      // console.log(this.char.info.skills);
-      this.store.set('character', new Character());
-      // this.$store.commit("calculateSkills");
+      this.$store.dispatch("saveToDisk");
+    },
+    reset: function() {
+      this.$store.dispatch("resetDisk", new Character());
     },
     firstLetterCapitalized: function(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);

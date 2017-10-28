@@ -111,6 +111,12 @@ const actions = {
     commit('updateStatValue', stat);
     commit('calculateStats');
     commit('calculateSkills');
+  },
+  saveToDisk ({ commit }) {
+    localStore.set('character', state.character);
+  },
+  resetDisk ({ commit }, input) {
+    localStore.set('character', input);
   }
 }
 
