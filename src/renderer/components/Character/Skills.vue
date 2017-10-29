@@ -1,12 +1,16 @@
 <template>
   <div class="row">
     <div class="form-group row col-sm-6" v-for="skill in skills" :key="skill.name">
-      <label for="skill" class="col-sm-7 col-form-label">{{firstLetterCapitalized(skill.name)}}</label>
+      <label for="skill" class="col-sm-6 col-form-label">{{firstLetterCapitalized(skill.name)}}</label>
       <div class="col-sm-3">
         <span type="text" class="form-control" v-bind:class="[skill.color ? good : bad]">{{skill.val}}</span>
       </div>
-      <div class="col-sm-2 text-center">
-        <input class="form-check-input" :value="skill.name" @click="update" type="checkbox" v-model="skill.prof">
+      <div class="col-sm-3">
+        <div data-toggle="buttons">
+          <label class="btn" v-bind:class="skill.prof ? success : failure">
+            <input class="form-check-input" :value="skill.name" @click="update" type="checkbox" v-model="skill.prof"> P
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +24,8 @@ export default {
   name: "skills",
   data() {
     return {
+      success: "btn-success",
+      failure: "btn-secondary",
       good: "good",
       bad: "bad"
     };

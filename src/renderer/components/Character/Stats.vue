@@ -19,7 +19,11 @@
       <span type="text" class="form-control" :id="stat.name" v-bind:class="[stat.scolor ? good : bad]">{{stat.save}}</span>
     </div>
     <div class="col-sm-2 text-center">
-      <input class="form-check-input" type="checkbox" @click="updateProf" :value="stat.name" v-model.number="stat.prof">
+      <div data-toggle="buttons">
+        <label class="btn" v-bind:class="stat.prof ? success : failure">
+          <input class="form-check-input" type="checkbox" @click="updateProf" :value="stat.name" v-model="stat.prof"> P
+        </label>
+      </div>
     </div>
   </div>
 </div>
@@ -32,6 +36,8 @@ export default {
   name: "stats",
   data() {
     return {
+      success: "btn-success",
+      failure: "btn-secondary",
       good: "good",
       bad: "bad",
     };

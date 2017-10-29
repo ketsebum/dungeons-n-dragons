@@ -150,7 +150,7 @@ function Character() {
             prof: false,
             stat: "dexterity"
         }, {
-            name: "Animal Handling",
+            name: "Ani Handling",
             val: 0,
             prof: false,
             stat: "wisdom"
@@ -220,7 +220,7 @@ function Character() {
             prof: false,
             stat: "intelligence"
         }, {
-            name: "sleight of hand",
+            name: "sleight hand",
             val: 0,
             prof: false,
             stat: "dexterity"
