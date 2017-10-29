@@ -132,7 +132,8 @@ export default {
     userSpells: {
       get() {
         return _.cloneDeep(this.$store.state.CharStore.character.info.spells);
-      }
+      },
+      char: state => state.CharStore.character
     },
     displayClass: function() {
       if (this.searchStr === "") {
@@ -144,6 +145,10 @@ export default {
   },
   created: function() {
     if (this.$store.state.CharStore.character.info === undefined) this.loadCharacter();
+    if (this.$store.state.CharStore.character.info.selectedSpell !== undefined) {
+      this.searchStr = this.$store.state.CharStore.character.info.selectedSpell;
+      this.$store.commit("selectSpell", "");
+    }
     let fileContents = fs.readFileSync(path.join(this.spellsFile), "utf8");
     this.spells = JSON.parse(fileContents);
     for (let userSpell in this.userSpells) {

@@ -6,7 +6,7 @@
     <button class="btn btn-warning" @click="lr">Long Rest</button>
     <br>
     <div class="row">
-      <div class="col-md-3" v-for="(value, spell) in spells" :key="spell">
+      <div class="col-md-4" v-for="(value, spell) in spells" :key="spell">
         <b-card class="mb2" v-bind:class="{ myspell: value.active }">
           <div slot="header" @click="expand">
             <span class="header" >{{spell}} - Level {{value.level}} - {{value.school}}</span>
@@ -82,16 +82,16 @@ export default {
     },
     expand: function(elem) {
       if(elem.srcElement.parentNode.parentNode.parentNode.className.includes("mb2")) {
-        if(elem.srcElement.parentNode.parentNode.parentNode.parentNode.className === 'col-md-3')
+        if(elem.srcElement.parentNode.parentNode.parentNode.parentNode.className === 'col-md-4')
           elem.srcElement.parentNode.parentNode.parentNode.parentNode.className = 'col-md-12';
         else {
-          elem.srcElement.parentNode.parentNode.parentNode.parentNode.className = 'col-md-3';
+          elem.srcElement.parentNode.parentNode.parentNode.parentNode.className = 'col-md-4';
         }
       } else {
-        if(elem.srcElement.parentNode.parentNode.parentNode.className === 'col-md-3')
+        if(elem.srcElement.parentNode.parentNode.parentNode.className === 'col-md-4')
           elem.srcElement.parentNode.parentNode.parentNode.className = 'col-md-12';
         else {
-          elem.srcElement.parentNode.parentNode.parentNode.className = 'col-md-3';
+          elem.srcElement.parentNode.parentNode.parentNode.className = 'col-md-4';
         }
       }
     }

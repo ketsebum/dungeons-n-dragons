@@ -105,6 +105,7 @@ const mutations = {
   },
   saveSkills: (state, skills) => state.character.info.skills = skills,
   saveSpells: (state, spells) => state.character.info.spells = spells,
+  selectSpell: (state, spell) => state.character.info.selectedSpell = spell,
 }
 
 const actions = {

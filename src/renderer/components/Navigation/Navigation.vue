@@ -1,7 +1,7 @@
 <template>
   <div>
     <button type="submit" @click="save" class="btn btn-primary">Save</button>
-    <button type="submit" @click="reset" class="btn btn-danger">Reset</button>
+    <!--<button type="submit" @click="reset" class="btn btn-danger">Reset</button>-->
     <router-link class="btn btn-dark" v-if="$route.path !== '/'" to="/">Character Sheet</router-link>
     <router-link class="btn btn-dark" v-if="$route.path !== '/battle'" to="/battle">Battle Screen</router-link>
     <router-link class="btn btn-dark" v-if="$route.path !== '/spells'" to="/spells">Spell Book</router-link>
