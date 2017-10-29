@@ -87,6 +87,10 @@ function Character() {
             name: 'deathSavesFailures',
             val: 0,
         },{
+            display: "Attack",
+            name: 'attack',
+            val: 0,
+        },{
             display: "Spell Attack",
             name: 'spellAttack',
             val: 0,
