@@ -2,11 +2,7 @@
   <div class="bg">
     <div class="spells margins">
       <div class="row" style="margin-left: -1px">
-        <div class="btn-group top-bar" style="display: block">
-          <router-link class="btn btn-dark" to="/battle">Battle Sreen</router-link>
-          <router-link class="btn btn-dark"to="/">Character Sheet</router-link>
-          <button class="btn btn-primary" @click="save">Save</button>
-        </div>
+        <navigation></navigation>
         <input type="text" class="top-bar" v-model="searchStr" placeholder="Search..."/>
         <div class="btn-group top-bar" data-toggle="buttons">
           <label class="btn btn-success top-bar" v-bind:class="{active: mySpells}">
@@ -72,10 +68,13 @@ import { mapState } from "vuex";
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+  import Navigation from '../Navigation/Navigation'
 
 export default {
   name: "spells",
-  components: {},
+  components: {
+    Navigation
+  },
   data() {
     return {
       spellsFile: "static/spells.json",
@@ -209,9 +208,6 @@ export default {
       delete this.userSpells[elem.target.value];
       this.spells[elem.target.value].active = false;
       this.$store.commit("saveSpells", this.userSpells);
-    },
-    save: function() {
-      this.$store.dispatch("saveToDisk");
     },
     filterClass: function(elem) {
       let count = 0;

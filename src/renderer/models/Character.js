@@ -86,6 +86,14 @@ function Character() {
             display: "DS Failures",
             name: 'deathSavesFailures',
             val: 0,
+        },{
+            display: "Spell Attack",
+            name: 'spellAttack',
+            val: 0,
+        },{
+            display: "Spell Save",
+            name: 'spellSave',
+            val: 10,
         }],
         personality: {
             traits: {
@@ -113,27 +121,27 @@ function Character() {
         spells: {},
         stats: [{
             name: "strength",
-            val: 0,
+            val: 10,
             prof: false
         }, {
             name: "dexterity",
-            val: 0,
+            val: 10,
             prof: false
         }, {
             name: "constitution",
-            val: 0,
+            val: 10,
             prof: false
         }, {
             name: "intelligence",
-            val: 0,
+            val: 10,
             prof: false
         }, {
             name: "wisdom",
-            val: 0,
+            val: 10,
             prof: false
         }, {
             name: "charisma",
-            val: 0,
+            val: 10,
             prof: false
         }],
         skills: [{

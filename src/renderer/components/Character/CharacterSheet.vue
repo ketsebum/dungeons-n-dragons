@@ -15,10 +15,8 @@
           </div>
           <div class="col-md-4">
             <personality></personality>
-            <button type="submit" @click="save" class="btn btn-primary">Save</button>
-            <button type="submit" @click="reset" class="btn btn-danger">Reset</button>
-            <router-link class="btn btn-dark" to="/battle">Battle Sreen</router-link>
-            <router-link class="btn btn-dark" to="/spells">Spell Book</router-link></div>
+            <navigation></navigation>
+          </div>
         </div>
       </form>
     </div>
@@ -35,6 +33,7 @@
   import Personality from './Personality'
   import Battles from './Battles'
   import Character from '../../models/Character'
+  import Navigation from '../Navigation/Navigation'
   import Store from '../../../main/store'
 
 export default {
@@ -45,7 +44,8 @@ export default {
     General,
     Personality,
     Battles,
-    SpellList
+    SpellList,
+    Navigation
   },
   data() {
     return {
@@ -69,12 +69,6 @@ export default {
     loadCharacter: function() {
       this.$store.commit("loadCharacter");
     },
-    save: function() {
-      this.$store.dispatch("saveToDisk");
-    },
-    reset: function() {
-      this.$store.dispatch("resetDisk", new Character());
-    },
     firstLetterCapitalized: function(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
@@ -83,7 +77,8 @@ export default {
 </script>
 <style scoped>
 .bg {
-  background: url("~@/assets/dragon-bg.jpg") no-repeat center center fixed;
+  background: url("~@/assets/dragon-bg.jpg") no-repeat center;
+  background-attachment: fixed;
   color: white;
   height: 100vh;
 }

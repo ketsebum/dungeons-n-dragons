@@ -36,6 +36,15 @@ const mutations = {
       state.character.info.stats[i].save = save;
       state.character.info.stats[i].bcolor = state.character.info.stats[i].bonus >= 0;
       state.character.info.stats[i].scolor = state.character.info.stats[i].save >= 0;
+      if(state.character.info.stats[i].name === "intelligence") {
+        state.character.info.battles.forEach((v, index) => {
+          if(v.name === "spellAttack") {
+            v.val = state.character.info.stats[i].save;
+          } else if(v.name === "spellSave") {
+            v.val = state.character.info.stats[i].bonus + 10;
+          }
+        })
+      }
     }
   },
   calculateSkills: (state) => {

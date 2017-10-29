@@ -3,15 +3,15 @@
     <div class="row margins">
       <form class="col">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-8">
+            <battles></battles>
+            <battle-spell></battle-spell>
           </div>
           <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <button type="submit" @click="save" class="btn btn-primary">Save</button>
-            <button type="submit" @click="reset" class="btn btn-danger">Reset</button>
-            <router-link class="btn btn-dark" to="/">Character Sheet</router-link>
-            <router-link class="btn btn-dark" to="/spells">Spell Book</router-link>
+            <navigation></navigation>
+            <br>
+            <stats></stats>
+            <skills></skills>
           </div>
         </div>
       </form>
@@ -23,11 +23,21 @@
   import { mapState } from 'vuex'
   import axios from 'axios'
   import Character from '../../models/Character'
+  import Navigation from '../Navigation/Navigation'
+  import Skills from '../Character/Skills'
+  import Stats from '../Character/Stats'
+  import Battles from '../Character/Battles'
+  import BattleSpell from './BattleSpell'
   import Store from '../../../main/store'
 
 export default {
   name: 'hello',
   components: {
+    Navigation,
+    BattleSpell,
+    Skills,
+    Stats,
+    Battles
   },
   data() {
     return {
@@ -65,7 +75,8 @@ export default {
 </script>
 <style scoped>
 .bg {
-  background: url("~@/assets/dragon-bg.jpg") no-repeat center center fixed;
+  background: url("~@/assets/battle-bg.jpg") no-repeat center center fixed;
+  background-attachment: fixed;
   color: white;
   height: 100vh;
 }
