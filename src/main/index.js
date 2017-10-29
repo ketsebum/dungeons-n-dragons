@@ -29,8 +29,11 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     useContentSize: true,
-    width: width
+    width: width,
+    frame: false
   })
+
+  // mainWindow.setMenu(null);
 
   mainWindow.loadURL(winURL)
 
