@@ -255,6 +255,6 @@ export default {
 .bg {
   background: url("~@/assets/wizard-bg.jpg") no-repeat center center fixed;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

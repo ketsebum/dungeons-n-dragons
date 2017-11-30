@@ -76,8 +76,7 @@ export default {
 <style scoped>
 .bg {
   background: url("~@/assets/battle-bg.jpg") no-repeat center center fixed;
-  background-attachment: fixed;
+  min-height: 100eh;
   color: white;
-  height: 100vh;
 }
 </style>

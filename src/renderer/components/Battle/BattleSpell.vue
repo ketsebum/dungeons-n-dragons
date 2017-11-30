@@ -1,6 +1,6 @@
 <template>
   <div class="spells">
-    <span style="background-color: lightblue; padding: 10px">Spells: Level 2 ({{level2}}/{{level2max}}) Level1 ({{level1}}/{{level1max}})</span>
+    <span style="background-color: lightblue; padding: 10px">Spells: Level 3 ({{level3}}/{{level3max}}) Level 2 ({{level2}}/{{level2max}}) Level1 ({{level1}}/{{level1max}})</span>
     <button class="btn btn-warning" @click="ar1">Arcane Recovery 1</button>
     <button class="btn btn-warning" @click="ar2">Arcane Recovery 2</button>
     <button class="btn btn-warning" @click="lr">Long Rest</button>
@@ -54,8 +54,10 @@ export default {
     return {
       level1: 0,
       level2: 0,
+      level3: 0,
       level1max: 4,
-      level2max: 3
+      level2max: 3,
+      level3max: 2
     };
   },
   computed:{
@@ -69,6 +71,7 @@ export default {
     use: function(elem) {
       if(this.spells[elem.target.value].level === "1") this.level1++;
       if(this.spells[elem.target.value].level === "2") this.level2++;
+      if(this.spells[elem.target.value].level === "3") this.level3++;
     },
     ar1: function() {
       this.level1 = (this.level1 - 2) > 0 ? (this.level1 - 2) : 0;
@@ -79,6 +82,7 @@ export default {
     lr: function() {
       this.level1 = 0;
       this.level2 = 0;
+      this.level3 = 0;
     },
     expand: function(elem) {
       if(elem.srcElement.parentNode.parentNode.parentNode.className.includes("mb2")) {

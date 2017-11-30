@@ -19,7 +19,7 @@ const mutations = {
         for(let j = 0; j < state.character.info.stats.length; j++) {
           if(state.character.info.stats[j].name === state.character.info.skills[i].stat) {
             let modifier = state.character.info.stats[j].val;
-            state.character.info.skills[i].val = state.character.info.skills[i].prof ? (modifier / 2) - 3 : (modifier / 2) - 5;
+            state.character.info.skills[i].val = state.character.info.skills[i].prof ? (modifier / 2) - 2 : (modifier / 2) - 5;
             state.character.info.skills[i].color = state.character.info.skills[i].val >= 0;
             break;
           }
@@ -32,7 +32,7 @@ const mutations = {
     for(let i = 0; i < state.character.info.stats.length; i++) {
       let modifier = state.character.info.stats[i].val;
       state.character.info.stats[i].bonus = Math.floor((modifier / 2) - 5);
-      let save = Math.floor(state.character.info.stats[i].prof ? (modifier / 2) - 3 : (modifier / 2) - 5);
+      let save = Math.floor(state.character.info.stats[i].prof ? (modifier / 2) - 2 : (modifier / 2) - 5);
       state.character.info.stats[i].save = save;
       state.character.info.stats[i].bcolor = state.character.info.stats[i].bonus >= 0;
       state.character.info.stats[i].scolor = state.character.info.stats[i].save >= 0;
@@ -41,7 +41,7 @@ const mutations = {
           if(v.name === "spellAttack") {
             v.val = state.character.info.stats[i].save;
           } else if(v.name === "spellSave") {
-            v.val = state.character.info.stats[i].bonus + 10;
+            v.val = state.character.info.stats[i].bonus + 8 + 3;
           }
         })
       }
@@ -52,7 +52,7 @@ const mutations = {
       for(let j = 0; j < state.character.info.stats.length; j++) {
         if(state.character.info.stats[j].name === state.character.info.skills[i].stat) {
           let modifier = state.character.info.stats[j].val;
-          let val = Math.floor(state.character.info.skills[i].prof ? (modifier / 2) - 3 : (modifier / 2) - 5);
+          let val = Math.floor(state.character.info.skills[i].prof ? (modifier / 2) - 2 : (modifier / 2) - 5);
           state.character.info.skills[i].val = val;
           state.character.info.skills[i].color = state.character.info.skills[i].val >= 0;
           break;

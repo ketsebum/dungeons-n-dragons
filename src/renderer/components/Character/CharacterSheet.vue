@@ -77,9 +77,8 @@ export default {
 </script>
 <style scoped>
 .bg {
-  background: url("~@/assets/dragon-bg.jpg") no-repeat center;
-  background-attachment: fixed;
+  background: url("~@/assets/dragon-bg.jpg") no-repeat center center fixed;
+  min-height: 100eh;
   color: white;
-  height: 100vh;
 }
 </style>
