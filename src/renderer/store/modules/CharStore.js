@@ -1,4 +1,5 @@
 import Store from '../../../main/store'
+import Character from '../../models/Character'
 
 const state = {
   character: {},
@@ -12,7 +13,10 @@ let localStore = new Store({
 });
 
 const mutations = {
-  loadCharacter: (state, character) => state.character = localStore.get('character'),
+  loadCharacter: (state, character) => {
+    let char = localStore.get('character');
+    state.character = char.info === undefined ? new Character() : char;
+  },
   updateSkill: (state, skill) => {
     for(let i = 0; i < state.character.info.skills.length; i++) {
       if(state.character.info.skills[i].name === skill.name) {
