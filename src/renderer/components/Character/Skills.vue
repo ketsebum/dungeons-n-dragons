@@ -6,7 +6,7 @@
         <span type="text" class="form-control" v-bind:class="[skill.color ? good : bad]">{{skill.val}}</span>
       </div>
       <div class="col-sm-3">
-        <div data-toggle="buttons">
+        <div class="btn-group-toggle" data-toggle="buttons">
           <label class="btn" v-bind:class="skill.prof ? success : failure">
             <input class="form-check-input" :value="skill.name" @click="update" type="checkbox" v-model="skill.prof"> P
           </label>

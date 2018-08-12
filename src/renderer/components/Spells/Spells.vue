@@ -4,12 +4,12 @@
       <div class="row" style="margin-left: -1px">
         <navigation></navigation>
         <input type="text" class="top-bar" v-model="searchStr" placeholder="Search..."/>
-        <div class="btn-group top-bar" data-toggle="buttons">
+        <div class="btn-group-toggle btn-group top-bar" data-toggle="buttons">
           <label class="btn btn-success top-bar" v-bind:class="{active: mySpells}">
             <input type="checkbox" v-model="mySpells">My Spells
           </label>
         </div>
-        <div class="btn-group top-bar" data-toggle="buttons">
+        <div class="btn-group-toggle btn-group top-bar" data-toggle="buttons">
           <label class="btn btn-secondary" v-bind:class="{active: classd.active}" v-for="classd in filterSpells.class.options" :key="classd.name" >
             <input type="checkbox" :value="classd.name" @click="filterClass"> {{classd.name}}
           </label>

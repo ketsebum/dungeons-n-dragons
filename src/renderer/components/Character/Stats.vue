@@ -19,9 +19,9 @@
       <span type="text" class="form-control" :id="stat.name" v-bind:class="[stat.scolor ? good : bad]">{{stat.save}}</span>
     </div>
     <div class="col-sm-2 text-center">
-      <div data-toggle="buttons">
+      <div class="btn-group-toggle" data-toggle="buttons">
         <label class="btn" v-bind:class="stat.prof ? success : failure">
-          <input class="form-check-input" type="checkbox" @click="updateProf" :value="stat.name" v-model="stat.prof"> P
+          <input class="btn-secondary" type="checkbox" @click="updateProf" :value="stat.name" v-model="stat.prof"> P
         </label>
       </div>
     </div>
